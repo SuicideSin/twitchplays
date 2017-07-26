@@ -66,7 +66,17 @@ def bet_points(user, message, message_with_case=""):
 				return user.name + " lost " + str(wager) + " points..."
 	else:
 		return "Try again later."
-
+	
+def return_user_info(user, message, message_with_case=""):
+	
+	return_message = user.name + ": "
+	
+	if user.subscriber: return_message.append("subscriber, ")
+	return_message.append(LEVELS_INV[user.level] + ", ")
+	return_message.append(str(user.messages) + " valid input messages")
+	
+	return return_message
+	
 def roulette(user, message, message_with_case=""):
 
 	global ROULETTE_CHAMBERS
@@ -309,6 +319,7 @@ except:
 		"!points": Command("!points", "Usage: !points", FLAGS["default"], return_user_points),
 		"!bet": Command("!bet", "Usage: !bet <wager>", FLAGS["default"], bet_points),
 		"!roulette": Command("!roulette", "Usage: !roulette", FLAGS["default"], roulette),
+		"!me": Command("!me", "Usage: !me", FLAGS["default"], return_user_info),
 		"!permissions": Command("!permissions", LEVEL_INFO, FLAGS["default"]),
 		"!tutorial": Command("!tutorial", TUTORIAL_URL, FLAGS["default"]),
 		"!botinfo": Command("!botinfo", BOT_INFO, FLAGS["default"]),
