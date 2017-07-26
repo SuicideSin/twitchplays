@@ -254,7 +254,7 @@ def execute_python(user, message, message_with_case):
 
 	exec(message_with_case[6:])
 
-def remove_macros(user, message, message_with_case=""):
+def delete_macros(user, message, message_with_case=""):
 	
 	macros = []
 	for macro in sorted(COMMANDS):
@@ -262,7 +262,7 @@ def remove_macros(user, message, message_with_case=""):
 			del COMMANDS[macro]
 	pickle.dump(COMMANDS, open("COMMANDS.p","wb"))
 	
-def remove_memes(user, message, message_with_case=""):
+def delete_memes(user, message, message_with_case=""):
 	
 	memes = []
 	for meme in sorted(COMMANDS):
@@ -321,7 +321,7 @@ except:
 		"!secretmemes": Command("!secretmemes", "Mod Command Usage: !secretmemes", FLAGS["default"], return_secret_memes, 3),
 		"!remove": Command("!remove", "Mod Command Usage: !remove <macro/meme name>", FLAGS["default"], remove_command, 3),
 		"!exec": Command("!exec", "Admin Command Usage: !exec <Valid Python code>", FLAGS["default"], execute_python, 4),
-		"!removememes": Command("!removememes", "Admin Command Usage: !removememes", FLAGS["default"], remove_memes, 4),
-		"!removemacros": Command("!removemacros", "Admin Command Usage: !removemacros", FLAGS["default"], remove_macros, 4),
+		"!deletememes": Command("!removememes", "Admin Command Usage: !removememes", FLAGS["default"], delete_memes, 4),
+		"!deletemacros": Command("!removemacros", "Admin Command Usage: !removemacros", FLAGS["default"], delete_macros, 4),
 	}
 	pickle.dump(COMMANDS, open("COMMANDS.p","wb"))
