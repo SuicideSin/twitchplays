@@ -177,6 +177,10 @@ while PROGRAM_RUNNING:
             except:
                 print(Fore.MAGENTA + "Error printing username")
 
+        if subscriber: user.subscriber = True
+        else:
+            user.subscriber = False
+            
         if user not in CURRENT_ACTIVE_USERS: CURRENT_ACTIVE_USERS.append(user)
 
         # Process the message
