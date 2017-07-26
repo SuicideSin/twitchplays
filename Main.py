@@ -124,7 +124,10 @@ def process(user, message, bitnum, subscriber, mod):
             if result != None:
                 sendmessage(result)
         except Exception as e:
-            sendmessage(COMMANDS[command_choice].contents)
+            try:
+                sendmessage(COMMANDS[command_choice].contents)
+            except:
+                sendmessage("Unexpected error occurred. Tell @TwitchPlays_Everything")
             print(Fore.RED + "Error evaluating command: ",end="")
             print(e)
 
