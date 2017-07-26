@@ -340,8 +340,8 @@ except:
 		"!secrets": Command("!secrets", "Mod Command Usage: !secretmemes", FLAGS["default"], return_secret_memes, 3),
 		"!remove": Command("!remove", "Mod Command Usage: !remove <macro/meme name>", FLAGS["default"], remove_command, 3),
 		"!exec": Command("!exec", "Admin Command Usage: !exec <Valid Python code>", FLAGS["default"], execute_python, 4),
-		"!deletememes": Command("!removememes", "Admin Command Usage: !removememes", FLAGS["default"], delete_memes, 4),
+		"!deletememes": Command("!deletememes", "Admin Command Usage: !deletememes", FLAGS["default"], delete_memes, 4),
 		"!deletesecrets": Command("!deletesecrets", "Admin Command Usage: !deletesecrets", FLAGS["default"], delete_secret_memes, 4),
-		"!deletemacros": Command("!deletemacros", "Admin Command Usage: !removemacros", FLAGS["default"], delete_macros, 4),
+		"!deletemacros": Command("!deletemacros", "Admin Command Usage: !deletemacros", FLAGS["default"], delete_macros, 4),
 	}
 	pickle.dump(COMMANDS, open("COMMANDS.p","wb"))
