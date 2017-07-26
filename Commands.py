@@ -154,13 +154,15 @@ def return_command_list(user, message, message_with_case=""):
 
 def return_cleverbot_chat(user, message, message_with_case=""):
 
-	cleverbot_thread = Thread(target=chat, args=[user, message[5:]])
-	cleverbot_thread.start()
+	if user.subscriber:
+		cleverbot_thread = Thread(target=chat, args=[user, message[5:]])
+		cleverbot_thread.start()
 
 def change_user_color(user, message, message_with_case=""):
 
-	message = message.split(" ")
-	user.color = COLORS[message[1]]
+	if user.subscriber:
+		message = message.split(" ")
+		user.color = COLORS[message[1]]
 
 def save_state(user, message, message_with_case=""):
 
@@ -252,6 +254,22 @@ def execute_python(user, message, message_with_case):
 
 	exec(message_with_case[6:])
 
+def remove_macros(user, message, message_with_case=""):
+	
+	macros = []
+	for macro in sorted(COMMANDS):
+		if COMMANDS[macro].flag == FLAGS["macro"]:
+			del COMMANDS[macro]
+	pickle.dump(COMMANDS, open("COMMANDS.p","wb"))
+	
+def remove_memes(user, message, message_with_case=""):
+	
+	memes = []
+	for meme in sorted(COMMANDS):
+		if COMMANDS[meme].flag == FLAGS["meme"]:
+			del COMMANDS[meme]
+	pickle.dump(COMMANDS, open("COMMANDS.p","wb"))
+	
 class Command:
 
 	def __init__(self, name, contents, flag, function=None, level_required=0):
@@ -302,7 +320,8 @@ except:
 		"!memesecret": Command("!memesecret", "Mod Command Usage: !memesecret <secrete meme name> <secret meme contents>", FLAGS["default"], add_secret_meme, 3),
 		"!secretmemes": Command("!secretmemes", "Mod Command Usage: !secretmemes", FLAGS["default"], return_secret_memes, 3),
 		"!remove": Command("!remove", "Mod Command Usage: !remove <macro/meme name>", FLAGS["default"], remove_command, 3),
-		"!exec": Command("!exec", "Admin Command Usage: !exec <Valid Python code>", FLAGS["default"], execute_python, 4)
-
+		"!exec": Command("!exec", "Admin Command Usage: !exec <Valid Python code>", FLAGS["default"], execute_python, 4),
+		"!removememes": Command("!removememes", "Admin Command Usage: !removememes", FLAGS["default"], remove_memes, 4),
+		"!removemacros": Command("!removemacros", "Admin Command Usage: !removemacros", FLAGS["default"], remove_macros, 4),
 	}
 	pickle.dump(COMMANDS, open("COMMANDS.p","wb"))
