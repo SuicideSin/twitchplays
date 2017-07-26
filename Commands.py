@@ -71,9 +71,9 @@ def return_user_info(user, message, message_with_case=""):
 	
 	return_message = user.name + ": "
 	
-	if user.subscriber: return_message.append("subscriber, ")
-	return_message.append(LEVELS_INV[user.level] + ", ")
-	return_message.append(str(user.messages) + " valid input messages")
+	if user.subscriber: return_message += "subscriber, "
+	return_message += LEVELS_INV[user.level] + ", "
+	return_message += str(user.messages) + " valid input messages"
 	
 	return return_message
 	
