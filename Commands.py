@@ -211,11 +211,20 @@ def log_message(user, message, message_with_case=""):
 	message = message.split(" ")
 	try:
 		index = len(message[0]) + 1
-		LOG.append([datetime.datetime.now(), user.name, message_with_case[index:])
+		LOG.append([datetime.datetime.now(), user.name, profanity.censor(message_with_case[index:]))
 		pickle.dump(LOG, open("LOG.p","wb"))
 	except:
 		return "Invalid message."
 	
+def view_log(user, message, message_with_case=""):
+
+	global LOG
+	
+	log_date = LOG[-1][0]
+	log_user = LOG[-1][1]
+	log_message = LOG[-1][2]
+			    
+	return str(log_date) + "-->" + log_user + ": " + log_message
 
 def set_level(user, message, message_with_case=""):
 
@@ -371,6 +380,7 @@ except:
 		"!loadstate": Command("!loadstate", "Superviewer Usage: !loadstate <1-6>", FLAGS["default"], load_state, 2),
 		"!viewstate": Command("!viewstate", "Superviewer Usage: !viewstate <1-6>", FLAGS["default"], view_state, 2),
 		"!log": Command("!log", "Superviewer Usage: !log <log message>, FLAGS["default"], log_message, 2),
+		"!viewlog": Command("!viewlog", "Usage: !viewlog", FLAGS["default"], view_log),
 		"!setlevel": Command("!setlevel", "Mod Command Usage: !setlevel <username> <0/1/2>", FLAGS["default"], set_level, 3),
 		"!setmessage": Command("!setmessage", "Mod Command Usage: !setmessage <message>", FLAGS["default"], set_message, 3),
 		"!add": Command("!add", "Mod Command Usage: !add <macro/meme name> <macro/meme contents>", FLAGS["default"], add_command, 3),
