@@ -1,5 +1,6 @@
 import pickle
 import time
+import datetime
 import random
 import re
 
@@ -203,6 +204,19 @@ def view_state(user, message, message_with_case=""):
 
 	return "State " + SAVESTATES[int(message[10:].replace(" ",""))-1]
 
+def log_message(user, message, message_with_case=""):
+	
+	global LOG
+	
+	message = message.split(" ")
+	try:
+		index = len(message[0]) + 1
+		LOG.append([datetime.datetime.now(), message_with_case[index:])
+		pickle.dump(LOG, open("LOG.p","wb"))
+	except:
+		return "Invalid message."
+	
+
 def set_level(user, message, message_with_case=""):
 
 	message = message.split(" ")
@@ -329,6 +343,12 @@ class Command:
 		else:
 			return "Permission denied."
 
+# Load the log from the file
+try: LOG = pickle.load(open("LOG.p","rb"))
+except:
+	LOG = [[datetime.datetime.now(), "Log Created"]]
+	pickle.dump(LOG, open("LOG.p","wb"))
+
 # Load the command list from the file
 try: COMMANDS = pickle.load(open("COMMANDS.p","rb"))
 except:
@@ -347,9 +367,10 @@ except:
 		"!commands": Command("!commands", "Usage: !commands", FLAGS["default"], return_command_list),
 		"!chat": Command("!chat", "Subscriber Command Usage: !chat <your message here>", FLAGS["default"], return_cleverbot_chat),
 		"!color": Command("!color", "Subscriber Command Usage: !color <red/blue/green/yellow/cyan/white>", FLAGS["default"], change_user_color),
-		"!savestate": Command("!savestate", "Usage: !savestate <1-6> <optional message>", FLAGS["default"], save_state, 2),
-		"!loadstate": Command("!loadstate", "Usage: !loadstate <1-6>", FLAGS["default"], load_state, 2),
-		"!viewstate": Command("!viewstate", "Usage: !viewstate <1-6>", FLAGS["default"], view_state, 2),
+		"!savestate": Command("!savestate", "Superviewer Usage: !savestate <1-6> <optional message>", FLAGS["default"], save_state, 2),
+		"!loadstate": Command("!loadstate", "Superviewer Usage: !loadstate <1-6>", FLAGS["default"], load_state, 2),
+		"!viewstate": Command("!viewstate", "Superviewer Usage: !viewstate <1-6>", FLAGS["default"], view_state, 2),
+		"!log": Command("!log", "Superviewer Usage: !log <log message>, FLAGS["default"], log_message, 2),
 		"!setlevel": Command("!setlevel", "Mod Command Usage: !setlevel <username> <0/1/2>", FLAGS["default"], set_level, 3),
 		"!setmessage": Command("!setmessage", "Mod Command Usage: !setmessage <message>", FLAGS["default"], set_message, 3),
 		"!add": Command("!add", "Mod Command Usage: !add <macro/meme name> <macro/meme contents>", FLAGS["default"], add_command, 3),
