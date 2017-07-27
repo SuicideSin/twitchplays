@@ -347,7 +347,7 @@ except:
 		"!commands": Command("!commands", "Usage: !commands", FLAGS["default"], return_command_list),
 		"!chat": Command("!chat", "Subscriber Command Usage: !chat <your message here>", FLAGS["default"], return_cleverbot_chat),
 		"!color": Command("!color", "Subscriber Command Usage: !color <red/blue/green/yellow/cyan/white>", FLAGS["default"], change_user_color),
-		"!savestate": Command("!savestate", "Usage: !savestate <1-6>", FLAGS["default"], save_state, 2),
+		"!savestate": Command("!savestate", "Usage: !savestate <1-6> <optional message>", FLAGS["default"], save_state, 2),
 		"!loadstate": Command("!loadstate", "Usage: !loadstate <1-6>", FLAGS["default"], load_state, 2),
 		"!viewstate": Command("!viewstate", "Usage: !viewstate <1-6>", FLAGS["default"], view_state, 2),
 		"!setlevel": Command("!setlevel", "Mod Command Usage: !setlevel <username> <0/1/2>", FLAGS["default"], set_level, 3),
