@@ -297,7 +297,7 @@ def set_team(user, message, message_with_case=""):
 	else:
 		return "Invalid number."
 
-def set_all_teams(user, message, message_with_case=""):
+def set_all_team(user, message, message_with_case=""):
 	
 	message = message.split(" ")
 	team = int(message[1])
@@ -360,6 +360,7 @@ except:
 		"!deletememes": Command("!deletememes", "Admin Command Usage: !deletememes", FLAGS["default"], delete_memes, 4),
 		"!deletesecrets": Command("!deletesecrets", "Admin Command Usage: !deletesecrets", FLAGS["default"], delete_secret_memes, 4),
 		"!deletemacros": Command("!deletemacros", "Admin Command Usage: !deletemacros", FLAGS["default"], delete_macros, 4),
-		"!setteam": Command("!setteam", "Admin Command Usage: !setteam", FLAGS["default"], set_team, 4),
+		"!setteam": Command("!setteam", "Admin Command Usage: !setteam <0/1>", FLAGS["default"], set_team, 4),
+		"!setallteam": Command("!setallteam", "Admin Command Usage: !setall team <0/1>", FLAGS["default"], set_all_team, 4),
 	}
 	pickle.dump(COMMANDS, open("COMMANDS.p","wb"))
