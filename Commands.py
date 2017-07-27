@@ -361,6 +361,6 @@ except:
 		"!deletesecrets": Command("!deletesecrets", "Admin Command Usage: !deletesecrets", FLAGS["default"], delete_secret_memes, 4),
 		"!deletemacros": Command("!deletemacros", "Admin Command Usage: !deletemacros", FLAGS["default"], delete_macros, 4),
 		"!setteam": Command("!setteam", "Admin Command Usage: !setteam <0/1>", FLAGS["default"], set_team, 4),
-		"!setallteam": Command("!setallteam", "Admin Command Usage: !setall team <0/1>", FLAGS["default"], set_all_team, 4),
+		"!setallteam": Command("!setallteam", "Admin Command Usage: !setallteam <0/1>", FLAGS["default"], set_all_team, 4),
 	}
 	pickle.dump(COMMANDS, open("COMMANDS.p","wb"))
