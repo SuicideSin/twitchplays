@@ -224,7 +224,7 @@ def view_log(user, message, message_with_case=""):
 	log_user = LOG[-1][1]
 	log_message = LOG[-1][2]
 			    
-	return str(log_date) + "-->" + log_user + ": " + log_message
+	return str(log_date) + " --> " + log_user + " : " + log_message
 
 def set_level(user, message, message_with_case=""):
 
