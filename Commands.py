@@ -293,8 +293,17 @@ def set_team(user, message, message_with_case=""):
 	message = message.split(" ")
 	if message[2] == "0" or message[2] == "1":
 		USERS[message[1]].team = int(message[2])
+		pickle.dump(USERS, open("USERS.p","wb"))
 	else:
 		return "Invalid number."
+
+def set_all_teams(user, message, message_with_case=""):
+	
+	message = message.split(" ")
+	team = int(message[1])
+	for viewer in USERS:
+		viewer.team = team
+	pickle.dump(USERS, open("USERS.p","wb"))
 	
 class Command:
 
