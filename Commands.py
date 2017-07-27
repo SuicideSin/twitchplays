@@ -211,7 +211,7 @@ def log_message(user, message, message_with_case=""):
 	message = message.split(" ")
 	try:
 		index = len(message[0]) + 1
-		LOG.append([datetime.datetime.now(), message_with_case[index:])
+		LOG.append([datetime.datetime.now(), user.name, message_with_case[index:])
 		pickle.dump(LOG, open("LOG.p","wb"))
 	except:
 		return "Invalid message."
