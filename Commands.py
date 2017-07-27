@@ -288,6 +288,14 @@ def delete_secret_memes(user, message, message_with_case=""):
 			del COMMANDS[meme]
 	pickle.dump(COMMANDS, open("COMMANDS.p","wb"))
 	
+def set_team(user, message, message_with_case=""):
+	
+	message = message.split(" ")
+	if message[2] == "0" or message[2] == "1":
+		USERS[message[1]].team = int(message[2])
+	else:
+		return "Invalid number."
+	
 class Command:
 
 	def __init__(self, name, contents, flag, function=None, level_required=0):
