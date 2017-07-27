@@ -344,12 +344,13 @@ except:
 		"!setlevel": Command("!setlevel", "Mod Command Usage: !setlevel <username> <0/1/2>", FLAGS["default"], set_level, 3),
 		"!setmessage": Command("!setmessage", "Mod Command Usage: !setmessage <message>", FLAGS["default"], set_message, 3),
 		"!add": Command("!add", "Mod Command Usage: !add <macro/meme name> <macro/meme contents>", FLAGS["default"], add_command, 3),
-		"!addsecret": Command("!addsecret", "Mod Command Usage: !memesecret <secrete meme name> <secret meme contents>", FLAGS["default"], add_secret_meme, 3),
-		"!secrets": Command("!secrets", "Mod Command Usage: !secretmemes", FLAGS["default"], return_secret_memes, 3),
+		"!addsecret": Command("!addsecret", "Mod Command Usage: !addsecret <secrete meme name> <secret meme contents>", FLAGS["default"], add_secret_meme, 3),
+		"!secrets": Command("!secrets", "Mod Command Usage: !secrets", FLAGS["default"], return_secret_memes, 3),
 		"!remove": Command("!remove", "Mod Command Usage: !remove <macro/meme name>", FLAGS["default"], remove_command, 3),
 		"!exec": Command("!exec", "Admin Command Usage: !exec <Valid Python code>", FLAGS["default"], execute_python, 4),
 		"!deletememes": Command("!deletememes", "Admin Command Usage: !deletememes", FLAGS["default"], delete_memes, 4),
 		"!deletesecrets": Command("!deletesecrets", "Admin Command Usage: !deletesecrets", FLAGS["default"], delete_secret_memes, 4),
 		"!deletemacros": Command("!deletemacros", "Admin Command Usage: !deletemacros", FLAGS["default"], delete_macros, 4),
+		"!setteam": Command("!setteam", "Admin Command Usage: !setteam", FLAGS["default"], set_team, 4),
 	}
 	pickle.dump(COMMANDS, open("COMMANDS.p","wb"))
