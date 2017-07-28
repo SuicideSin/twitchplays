@@ -1,4 +1,5 @@
 import pickle
+import datetime
 
 from colorama import Fore
 
@@ -33,6 +34,7 @@ class User:
 		self.inventory = inventory
 		self.subscriber = subscriber
 		self.bet_timer = 0
+		self.join_date = datetime.datetime.now()
 
 # Load the user list from the file
 try: USERS = pickle.load(open("USERS.p","rb"))
